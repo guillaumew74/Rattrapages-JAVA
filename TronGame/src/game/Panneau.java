@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,6 +12,13 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+/**
+ * @author guillaume
+ *
+ */
+
+// declaration de variable global, une pour le gentil et une autre pour le mechant
 
 
 public class Panneau extends JPanel {
@@ -42,6 +50,9 @@ public class Panneau extends JPanel {
   private int posYTrace2[] = new int[10000];
 
   
+  // savoir si les personnages sont morts ou pas
+  
+  
   private boolean boom1 = false;
   
   private boolean boom2 = false;
@@ -53,9 +64,11 @@ public class Panneau extends JPanel {
   private String text;
 
 
- 
+// 
 
 public void paintComponent(Graphics g){
+	
+	// texte d'affichage
 	
 	JLabel label1 = new JLabel();
     label1.setText(text);
@@ -66,6 +79,10 @@ public void paintComponent(Graphics g){
 	
 	if (doOnce == false) {
 	
+		
+	// initialise la position initale de la trace 
+		
+		
 	Arrays.fill(posXTrace2, -100);
 	Arrays.fill(posYTrace2, -100);
 	
@@ -77,9 +94,13 @@ public void paintComponent(Graphics g){
 	
 	}
 	  
+	// Affichage des images
+	
 	  super.paintComponent(g);
 
 	  try {
+		  
+		  // affiche suivant la direction, les sprites associés du gentil 
 		  
 		  switch (this.directionGentil) {
 		case 0:
@@ -101,7 +122,8 @@ public void paintComponent(Graphics g){
 			break;
 		}
 		  
-
+		  // affiche suivant la direction, les sprites associés du méchant
+		  
 		  switch (this.directionMechant) {
 			case 0:
 				this.imageMechant = ImageIO.read(new File("images/motoMechantDroite.png"));
@@ -123,14 +145,16 @@ public void paintComponent(Graphics g){
 			}
 			  
 		  
-	      
+		  // declaration de l'image de la trace
+		  
+		  
 		  Image traceGentil = ImageIO.read(new File("images/traceGentil.png"));
 		  
 		  Image traceMechant = ImageIO.read(new File("images/traceMechant.png"));
 	      
 
 	
-		  
+		  // test de collision 
 		  
 		  for (int i=0; i<this.posXTrace.length; i++) {
 			  
@@ -142,7 +166,7 @@ public void paintComponent(Graphics g){
 				  
 				  
 				  
-				  
+				  // test qui va prendre en compte la position de sa trace, pour que des qu'il revienne dessus, cela le tue 
 				  
 				  switch (this.directionMechant) {
 					case 0:
@@ -179,6 +203,8 @@ public void paintComponent(Graphics g){
 						break;
 					}
 				  
+				  
+				  // test de collision avec la trace de l'autre joueur
 				  
 				  
 				   if( ((posX2 <= posXTrace[i]+10 && posX2 >= posXTrace[i]-10) && (posY2 <= posYTrace[i]+10 && posY2 >= posYTrace[i]-10))  ){
@@ -243,27 +269,26 @@ public void paintComponent(Graphics g){
 		  
 		  
 		  
+		  
 		  for (int i=0; i<this.posXTrace2.length; i++) {
 			  
 			  
 			  
 			  g.drawImage(traceMechant, this.posXTrace2[i]+25, this.posYTrace2[i]+25, this);
 			  
-
-			  
-			  
-			  
+	  
 		  
 	  }
+		  
 		  
 		  if (boom1 && boom2) {
 			  
 		  }
 		  
 
+		  // affiche l'image du sprite en fonction de la position
 		  
 		  
-	      
 	      g.drawImage(imageGentil, posX, posY, this);
 	      
 	      g.drawImage(imageMechant, posX2, posY2, this);

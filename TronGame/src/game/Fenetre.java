@@ -7,13 +7,16 @@ import javax.swing.JLabel;
 
  
 
+/**
+ * @author guillaume
+ *
+ */
 public class Fenetre extends JFrame{
 	
 
 
   private Panneau pan = new Panneau();
   
-
 
 
 public Panneau getPan() {
@@ -24,6 +27,9 @@ public Panneau getPan() {
 public void setPan(Panneau pan) {
 	this.pan = pan;
 }
+
+
+// creation de la fenetre de jeu
 
 
 public Fenetre(){        
@@ -39,6 +45,8 @@ public Fenetre(){
     this.setContentPane(pan);
 
     this.setVisible(true);
+    
+    
     
 
 

@@ -1,5 +1,12 @@
 package game;
 
+/**
+ * @author guillaume
+ *
+ */
+
+// choisir la vitesse
+
 public class main{
 
 	public static void main(String[] args) {

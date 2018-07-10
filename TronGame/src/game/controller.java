@@ -2,12 +2,20 @@ package game;
 
 
 import java.awt.Color;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
+
+/**
+ * @author guillaume
+ *
+ */
+
+// declaration de variable global
 
 public class controller implements KeyListener{
 	
@@ -25,7 +33,7 @@ public class controller implements KeyListener{
 	int mechantCases=0;
 	
 
-	
+// Lancement d'une nouvelle fenetre, ajoute un keylistener a la classe 
 
 	public controller(int vitesse) {
 		
@@ -40,11 +48,14 @@ public class controller implements KeyListener{
 		
 		this.x1KeyPressed = '0';
 		
+	// tant que ni le joeur 1, ni le joeur 2 meurt, boucle inifini, continue le jeu 
 		
 		while (Fenetre.getPan().isBoom1()==false && Fenetre.getPan().isBoom2()==false) {
 			
 			
 			if (this.x1KeyPressed != '0' || this.x2KeyPressed != '0') {
+				
+	// Detection de chaque touche pour les direction des 2 joueurs, et regarde si le joueur ne depasse pas la taille de la fenetre.
 				
 				if(this.x1KeyPressed=='d' && ( Fenetre.getPan().getPosX()+5 < Fenetre.getPan().getWidth()-50 ) ) {
 
@@ -375,6 +386,8 @@ public class controller implements KeyListener{
 
 
 			}
+		
+// condition de victoire 
 		
 		if(Fenetre.getPan().isBoom1() && Fenetre.getPan().isBoom2()){
 		
